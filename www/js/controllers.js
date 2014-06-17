@@ -46,7 +46,7 @@ angular.module('starter.controllers', [])
                 else {
                     $scope.$apply(function() {
                         $scope.menus.push(doc);
-                        //console.log(doc);
+                        console.log(doc);
                     });
                 }
             });
@@ -55,7 +55,13 @@ angular.module('starter.controllers', [])
 
     function showMenu() {
 		db.allDocs({include_docs: true, descending: false}, function(err, doc) {
+      if(err)
+      {
+        conesole.log(err);
+      } else {
 		    $scope.loadMenu(doc.rows);
+      }
+
 		});
 	}
 
@@ -68,7 +74,12 @@ angular.module('starter.controllers', [])
 
 
 
-	showMenu();
+	//showMenu();
+
+  $scope.refreshList = function() {
+    console.log("Refreshed");
+    showMenu();
+  };
 
 
 })
