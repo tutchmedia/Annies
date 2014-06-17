@@ -16,7 +16,13 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     if(window.StatusBar) {
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
+      console.log("Status Bar Loaded");
     }
+    if (ionic.Platform.isIOS())  {
+      ionic.Platform.fullScreen();
+      console.log("BRAP!");
+    }
+
   });
 })
 
