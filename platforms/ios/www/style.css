@@ -68,6 +68,9 @@ src: url(fonts/MankSans.ttf);
 	color:#ffffff;
 	font: 'MenuFont';
 }
+.bar-stable .button.button-clear {
+    padding-top:20px;
+}
 .title{
 	color:#ffffff !important;
     padding-top:20px;
