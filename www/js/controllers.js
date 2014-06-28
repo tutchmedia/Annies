@@ -1,6 +1,6 @@
 //var db = window.sqlitePlugin.openDatabase({name: "menu"});
-var db = new PouchDB('menu',{adapter: 'websql'});
-var remoteCouch = 'http://tutchmedia:jesta123@annies.iriscouch.com/menu';
+var db = new PouchDB('test',{adapter: 'websql'});
+var remoteCouch = 'http://tutchmedia:jesta123@annies.iriscouch.com/test';
 
 //Sync
 
