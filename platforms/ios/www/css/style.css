@@ -55,28 +55,18 @@ src: url(fonts/MankSans.ttf);
 	line-height:1;
 	padding-top: 5px;
 }
-.buttons {
-    padding-top:20px;
-}
+
 .bar.bar-stable {
 	background-color: rgba(101,209,173,0.8);
 	border-top-left-radius:5px;
 	border-top-right-radius:5px;
-    height:60px;
 }
 .bar-stable .button {
 	color:#ffffff;
 	font: 'MenuFont';
 }
-.bar-stable .button.button-clear {
-    padding-top:20px;
-}
 .title{
 	color:#ffffff !important;
-    padding-top:20px;
-}
-.bar .title {
-    height:50px;
 }
 .pane {
 	background-color: #eaeaea;
@@ -86,9 +76,6 @@ src: url(fonts/MankSans.ttf);
 	height:110px;
 	border-bottom-left-radius: 5px;
 	border-bottom-right-radius: 5px;
-}
-.has-header {
-    top:62px;
 }
 
 .bar {
