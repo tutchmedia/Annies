@@ -68,7 +68,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       views: {
         'menuContent' :{
           templateUrl: "templates/menuDetail.html",
-          controller: 'MenuDetailCtrl'
+          controller: 'PlaylistDetailCtrl'
         }
       }
     });
