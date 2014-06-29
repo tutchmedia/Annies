@@ -28,6 +28,12 @@ angular.module('starter.services', [])
       return $http.get('https://api.backendless.com/v1/data/menu/'+itemId , myHeader).success(function (data) {
         //console.log("Test: "+ data.item_name);
         return data;
+
+
+
+        // After returning the data, insert it into the table from here ready for the controller to pull from the db directly
+
+        
       });
 
     }
