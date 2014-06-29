@@ -13,36 +13,20 @@ angular.module('starter.controllers', [])
 
   //$scope.items = [];
 
-	MenuFeed.getData().then(function(data) {
-    	$scope.items = data.data.data;
-    	var my_data = data.data.data;
 
-    	//console.log("row: " + JSON.stringify(data.data.data));
-
-
-    	// SQL start
-
+  // Somehow conver to get data from DB
+	MenuFeed.getData().then(function() {
     	db.transaction(function(tx) {
-        tx.executeSql('DROP TABLE IF EXISTS menu');
-        tx.executeSql('CREATE TABLE IF NOT EXISTS menu (id text PRIMARY KEY, item_name text, item_price real)');
+	    	tx.executeSql("select * from menu;", [], function(tx, results) {
+	            console.log(results.rows);
+	            $scope.items = results.rows;
+	         });
+	    });
 
-        // Insert data into the database
-
-        var sql = "INSERT OR REPLACE INTO menu (id, item_name, item_price) VALUES (?, ?, ?)";
-
-        for (var i in my_data) {
-        	//for each row, insert into the table
-			item = my_data[i];
-        	var params = [item.objectId, item.item_name, item.item_price];
-        	tx.executeSql(sql, params);
-		}
-
-
-
-        }, function(e) {
-          console.log("ERROR: " + e.message);
-        });
 	});
+
+
+	// Load from database
 
 })
 

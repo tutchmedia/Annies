@@ -12,7 +12,34 @@ angular.module('starter.services', [])
 		};
 
       return $http.get('https://api.backendless.com/v1/data/menu', myHeader).success(function (data) {
-        return data.data;
+
+      // After returning the data, insert it into the table from here ready for the controller to pull from the db directly
+
+      var my_data = data.data;
+
+      // SQL start
+
+      db.transaction(function(tx) {
+        tx.executeSql('DROP TABLE IF EXISTS menu');
+        tx.executeSql('CREATE TABLE IF NOT EXISTS menu (id text PRIMARY KEY, item_name text, item_price real)');
+
+        // Insert data into the database
+
+        var sql = "INSERT OR REPLACE INTO menu (id, item_name, item_price) VALUES (?, ?, ?)";
+
+        for (var i in my_data) {
+          //for each row, insert into the table
+        item = my_data[i];
+            var params = [item.objectId, item.item_name, item.item_price];
+            tx.executeSql(sql, params);
+        }
+
+
+
+        }, function(e) {
+          console.log("ERROR: " + e.message);
+        });
+
       });
     },
     getDataDetail: function(itemId) {
@@ -28,12 +55,6 @@ angular.module('starter.services', [])
       return $http.get('https://api.backendless.com/v1/data/menu/'+itemId , myHeader).success(function (data) {
         //console.log("Test: "+ data.item_name);
         return data;
-
-
-
-        // After returning the data, insert it into the table from here ready for the controller to pull from the db directly
-
-        
       });
 
     }
