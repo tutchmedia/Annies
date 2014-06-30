@@ -12,16 +12,23 @@ angular.module('starter.controllers', [])
 .controller('PlaylistsCtrl', function($scope, MenuFeed) {
 
   //$scope.items = [];
-
+  var list = [];
 
   // Somehow conver to get data from DB
-	MenuFeed.getData().then(function() {
-    	db.transaction(function(tx) {
-	    	tx.executeSql("select * from menu;", [], function(tx, results) {
-	            console.log(results.rows);
-	            $scope.items = results.rows;
-	         });
-	    });
+    		db.transaction(function (tx) {
+				tx.executeSql('SELECT * FROM menu ORDER BY item_name ASC', [], function (tx, results) {
+				  var len = results.rows.length, i;
+				  for (i = 0; i < len; i++) {
+				  	//$scope.items = results.rows.item(i);
+				  	list.push(results.rows.item(i));
+				   	console.log(results.rows.item(i));
+				  }
+
+				  console.log(list);
+				  $scope.items = list;
+				  $scope.$apply();
+			});
+
 
 	});
 
@@ -30,12 +37,21 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('PlaylistDetailCtrl', function($scope, $stateParams, MenuFeed) {
+.controller('PlaylistDetailCtrl', function($scope, $stateParams) {
+	//console.log($stateParams.id);
 
-	MenuFeed.getDataDetail($stateParams.objectId).then(function(data){
-    	$scope.items = data.data.data;
-    	console.log(data.data.data);
-  });
+	var getId = $stateParams.id;
+
+	db.transaction(function (px) {
+		px.executeSql('SELECT * FROM menu WHERE id = "'+ getId +'"', [], function(test, test2){
+			console.log(test2.rows.item(0));
+			trial = test2.rows.item(0);
+			$scope.items = trial;
+
+		});
+
+		//console.log(results.rows.item(i));
+	});
 
 
 })
