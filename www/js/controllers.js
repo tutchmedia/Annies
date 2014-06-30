@@ -32,9 +32,6 @@ angular.module('starter.controllers', [])
 
 	});
 
-
-	// Load from database
-
 })
 
 .controller('PlaylistDetailCtrl', function($scope, $stateParams) {
