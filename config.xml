@@ -16,7 +16,7 @@
 
     <preference name="phonegap-version" value="3.4.0" />
 
-<gap:plugin name="ch.zhaw.sqlite" version="2.0.0" / >
+    <gap:plugin name="ch.zhaw.sqlite" version="2.0.0" / >
 
     <!-- Don't store local date in an iCloud backup. Turn this to "cloud" to enable storage 
          to be sent to iCloud. Note: enabling this could result in Apple rejecting your app.
