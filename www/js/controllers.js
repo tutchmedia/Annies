@@ -21,10 +21,10 @@ angular.module('starter.controllers', [])
 				  for (i = 0; i < len; i++) {
 				  	//$scope.items = results.rows.item(i);
 				  	list.push(results.rows.item(i));
-				   	console.log(results.rows.item(i));
+				   	//console.log(results.rows.item(i));
 				  }
 
-				  console.log(list);
+				  //console.log(list);
 				  $scope.items = list;
 				  $scope.$apply();
 			});
@@ -34,21 +34,23 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('PlaylistDetailCtrl', function($scope, $stateParams) {
+.controller('PlaylistDetailCtrl', function($scope, $stateParams, MenuFeed) {
 	//console.log($stateParams.id);
 
-	var getId = $stateParams.id;
+	//var getId = $stateParams.id;
+
 
 	db.transaction(function (px) {
-		px.executeSql('SELECT * FROM menu WHERE id = "'+ getId +'"', [], function(test, test2){
-			console.log(test2.rows.item(0));
-			trial = test2.rows.item(0);
-			$scope.items = trial;
+        px.executeSql('SELECT * FROM menu WHERE id = "'+ $stateParams.id +'"', [], function(test, test2){
+          //console.log(test2.rows.item(0));
 
-		});
+        $scope.$apply(function () {
+          $scope.items = test2.rows.item(0);
+        });
 
-		//console.log(results.rows.item(i));
-	});
+        });
 
+        //console.log(results.rows.item(i));
+      });
 
 })
