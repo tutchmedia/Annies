@@ -27,6 +27,9 @@ angular.module('starter.controllers', [])
 		}
 	});
 
+
+	// Check for reponse from order server and show order button
+
 })
 
 .controller('PlaylistsCtrl', function($scope, MenuFeed) {

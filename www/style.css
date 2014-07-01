@@ -105,3 +105,6 @@ src: url(fonts/MankSans.ttf);
 .full-image {
 	height:200px;
 }
+.order-button {
+	margin-top: 30px;
+}
