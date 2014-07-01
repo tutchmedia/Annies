@@ -1,6 +1,40 @@
-<ion-view title="{{ detail.item_name }}">
+<ion-view title="{{ items.item_name }}">
   <ion-content class="has-header">
-    <h1>Details</h1>
-    {{detail.item_name}}
+
+<div class="list card">
+
+  <div class="item">
+    
+    <h2>{{items.item_name}}</h2>
+    <p>£{{items.item_price}}</p>
+  </div>
+
+  <div class="item item-body">
+    <img class="full-image" src="{{items.item_image}}">
+    <p>
+      {{items.item_desc}}
+    </p>
+    <p>
+      <a href="#" class="subdued">1 Like</a>
+      <a href="#" class="subdued">5 Comments</a>
+    </p>
+  </div>
+
+  <div class="item tabs tabs-secondary tabs-icon-left">
+    <a class="tab-item" href="#">
+      <i class="icon ion-thumbsup"></i>
+      Like
+    </a>
+    <a class="tab-item" href="#">
+      <i class="icon ion-chatbox"></i>
+      Comment
+    </a>
+    <a class="tab-item" href="#">
+      <i class="icon ion-share"></i>
+      Share
+    </a>
+  </div>
+
+</div>
   </ion-content>
 </ion-view>

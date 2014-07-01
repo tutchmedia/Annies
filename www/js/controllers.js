@@ -1,9 +1,3 @@
-// Open database
-
-var db = window.openDatabase('AnniesBurger', '1.0', 'database', -1);
-
-//Create database
-
 angular.module('starter.controllers', [])
 
 .controller('AppCtrl', function($scope, $ionicLoading, MenuFeed) {

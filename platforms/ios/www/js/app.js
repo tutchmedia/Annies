@@ -53,6 +53,14 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         }
       }
     })
+    .state('app.order', {
+      url: "/order",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/order.html"
+        }
+      }
+    })
     .state('app.playlists', {
       url: "/menu",
       views: {
@@ -68,7 +76,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       views: {
         'menuContent' :{
           templateUrl: "templates/menuDetail.html",
-          controller: 'MenuDetailCtrl'
+          controller: 'PlaylistDetailCtrl'
         }
       }
     });

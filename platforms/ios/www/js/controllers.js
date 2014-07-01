@@ -1,112 +1,75 @@
-var db = new PouchDB('menu');
-var remoteCouch = 'http://tutchmedia:jesta123@annies.iriscouch.com/menu';
-
-//Sync
-
-function sync() {
-  //syncDom.setAttribute('data-sync-state', 'syncing');
-  console.log("Syncing");
-  var opts = {live:true};
-  //db.replicate.to(remoteCouch, opts, syncError);
-  db.replicate.from(remoteCouch, opts, syncError);
-}
-
-function syncError() {
-  //syncDom.setAttribute('data-sync-state', 'error');
-  console.log("Sync Error");
-}
-
-
-
-// ****************** MODULE START ******************************
-
-
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope) {
-})
-
-.controller('PlaylistsCtrl', function($scope) {
-
-	$scope.menus = [];	
+.controller('AppCtrl', function($scope, $ionicLoading, MenuFeed) {
 
 
-	$scope.loadMenu = function(menus) {
+	// On load, get the latest data
 
-		// Before drawing the elements on the page, clear and reload the data (Does not delete from database)
-
-		$scope.menus = [];
-
-        for (var i = 0; i < menus.length; i++) {
-        	//console.log(menus);
-            var menu = menus[i];
-            //console.log(menu);
-            db.get(menu.id, function(err, doc) {
-                if (err) {
-                    console.log(err);
-                }
-                else {
-                    $scope.$apply(function() {
-                        $scope.menus.push(doc);
-                        console.log(doc);
-                    });
-                }
-            });
-        };
-    }
-
-    function showMenu() {
-		db.allDocs({include_docs: true, descending: false}, function(err, doc) {
-      if(err)
-      {
-        conesole.log(err);
-      } else {
-		    $scope.loadMenu(doc.rows);
-      }
-
-		});
-	}
-
-	db.info(function(err, info) {
-	  db.changes({
-	    since: info.update_seq,
-	    live: true
-	  }).on('change', showMenu);
+	$scope.loadingIndicator = $ionicLoading.show({
+	    content: 'Fetching Menu..',
+	    animation: 'fade-in',
+	    showBackdrop: false,
+	    maxWidth: 200,
+	    showDelay: 500
 	});
 
-
-
-	//showMenu();
-
-  $scope.refreshList = function() {
-    console.log("Refreshed");
-    showMenu();
-  };
-
-  $scope.refreshList();
-
-})
-
-.controller('MenuDetailCtrl', function($scope, $stateParams) {
-
-	$scope.detail = [];
-
-	db.get($stateParams.id, function(err, doc) {
-		if (err) {
-            console.log(err);
-        }
-        else {
-			//console.log(doc);
-
-			$scope.$apply(function() {
-                //$scope.detail.push(doc);
-                $scope.detail = doc;
-            });
-
+	MenuFeed.getData().then(function(data){
+		console.log(data.status);
+		if(data.status == 200)
+		{
+			$ionicLoading.hide();
 		}
-
-		
 	});
 
+
+	// Check for reponse from order server and show order button
+
+})
+
+.controller('PlaylistsCtrl', function($scope, MenuFeed) {
+
+
+
+  //$scope.items = [];
+  var list = [];
+
+  // Somehow conver to get data from DB
+    		db.transaction(function (tx) {
+				tx.executeSql('SELECT * FROM menu ORDER BY item_name ASC', [], function (tx, results) {
+				  var len = results.rows.length, i;
+				  for (i = 0; i < len; i++) {
+				  	//$scope.items = results.rows.item(i);
+				  	list.push(results.rows.item(i));
+				   	//console.log(results.rows.item(i));
+				  }
+
+				  //console.log(list);
+				  $scope.items = list;
+				  $scope.$apply();
+			});
+
+
+	});
+
+})
+
+.controller('PlaylistDetailCtrl', function($scope, $stateParams, MenuFeed) {
+	//console.log($stateParams.id);
+
+	//var getId = $stateParams.id;
+
+
+	db.transaction(function (px) {
+        px.executeSql('SELECT * FROM menu WHERE id = "'+ $stateParams.id +'"', [], function(test, test2){
+          //console.log(test2.rows.item(0));
+
+        $scope.$apply(function () {
+          $scope.items = test2.rows.item(0);
+        });
+
+        });
+
+        //console.log(results.rows.item(i));
+      });
 
 })

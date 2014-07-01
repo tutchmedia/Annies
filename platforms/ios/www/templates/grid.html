@@ -9,10 +9,10 @@
       <div class="item item-divider">
         Burgers
       </div>
-      <ion-item class="item-grid" ng-repeat="menu in menus" href="#/app/menu/{{menu._id}}">
+      <ion-item class="item-grid" ng-repeat="item in items" href="#/app/menu/{{item.id}}">
         <div class="col">
           <div class="circle"></div>
-          <div class="grid-name">{{menu.item_name}}</div>
+          <div class="grid-name">{{item.item_name}}</div>
         </div>
 
       </ion-item>
