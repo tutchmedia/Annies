@@ -44,6 +44,11 @@ src: url(fonts/MankSans.ttf);
 	margin-top: -10px;
 	margin-left: -3px;
 }
+.circle img {
+	width:60px;
+	height:60px;
+	border-radius: 30px;
+}
 .grid-name {
 	margin-left: -15px;
 	font-size: 11px;
@@ -76,7 +81,7 @@ src: url(fonts/MankSans.ttf);
     padding-top:20px;
 }
 .bar .title {
-    height:50px;
+    height:60px;
 }
 .pane {
 	background-color: #eaeaea;
@@ -93,4 +98,10 @@ src: url(fonts/MankSans.ttf);
 
 .bar {
 	background-color: rgba(255,255,255, 0.8);
+}
+.detailViewHeader {
+	height:150px;
+}
+.full-image {
+	height:200px;
 }

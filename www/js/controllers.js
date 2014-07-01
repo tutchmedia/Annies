@@ -6,10 +6,32 @@ var db = window.openDatabase('AnniesBurger', '1.0', 'database', -1);
 
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope) {
+.controller('AppCtrl', function($scope, $ionicLoading, MenuFeed) {
+
+
+	// On load, get the latest data
+
+	$scope.loadingIndicator = $ionicLoading.show({
+	    content: 'Fetching Menu..',
+	    animation: 'fade-in',
+	    showBackdrop: false,
+	    maxWidth: 200,
+	    showDelay: 500
+	});
+
+	MenuFeed.getData().then(function(data){
+		console.log(data.status);
+		if(data.status == 200)
+		{
+			$ionicLoading.hide();
+		}
+	});
+
 })
 
 .controller('PlaylistsCtrl', function($scope, MenuFeed) {
+
+
 
   //$scope.items = [];
   var list = [];

@@ -4,6 +4,8 @@ angular.module('starter.services', [])
   return {
     getData: function() {
       // Set header
+
+
 	  
 	  var myHeader = {headers: {
             'Application-id': '57F10D40-71E9-ECA4-FF91-BFFF32447B00',
@@ -21,23 +23,26 @@ angular.module('starter.services', [])
 
       db.transaction(function(tx) {
         tx.executeSql('DROP TABLE IF EXISTS menu');
-        tx.executeSql('CREATE TABLE IF NOT EXISTS menu (id text PRIMARY KEY, item_name text, item_price real)');
+        tx.executeSql('CREATE TABLE IF NOT EXISTS menu (id text PRIMARY KEY, item_name text, item_price real, item_image text, item_desc text)');
 
         // Insert data into the database
 
-        var sql = "INSERT OR REPLACE INTO menu (id, item_name, item_price) VALUES (?, ?, ?)";
+        var sql = "INSERT OR REPLACE INTO menu (id, item_name, item_price, item_image, item_desc) VALUES (?, ?, ?, ?, ?)";
 
         for (var i in my_data) {
           //for each row, insert into the table
         item = my_data[i];
-            var params = [item.objectId, item.item_name, item.item_price];
+            var params = [item.objectId, item.item_name, item.item_price, item.item_image, item.item_desc];
             tx.executeSql(sql, params);
         }
+
+        return data;
 
 
 
         }, function(e) {
-          console.log("ERROR: " + e.message);
+          console.log("ERROR: " + e);
+          return e;
         });
 
       });
