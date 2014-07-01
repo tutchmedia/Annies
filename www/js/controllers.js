@@ -12,46 +12,43 @@ angular.module('starter.controllers', [])
 .controller('PlaylistsCtrl', function($scope, MenuFeed) {
 
   //$scope.items = [];
+  var list = [];
 
-	MenuFeed.getData().then(function(data) {
-    	$scope.items = data.data.data;
-    	var my_data = data.data.data;
+  // Somehow conver to get data from DB
+    		db.transaction(function (tx) {
+				tx.executeSql('SELECT * FROM menu ORDER BY item_name ASC', [], function (tx, results) {
+				  var len = results.rows.length, i;
+				  for (i = 0; i < len; i++) {
+				  	//$scope.items = results.rows.item(i);
+				  	list.push(results.rows.item(i));
+				   	console.log(results.rows.item(i));
+				  }
 
-    	//console.log("row: " + JSON.stringify(data.data.data));
-
-
-    	// SQL start
-
-    	db.transaction(function(tx) {
-        tx.executeSql('DROP TABLE IF EXISTS menu');
-        tx.executeSql('CREATE TABLE IF NOT EXISTS menu (id text PRIMARY KEY, item_name text, item_price real)');
-
-        // Insert data into the database
-
-        var sql = "INSERT OR REPLACE INTO menu (id, item_name, item_price) VALUES (?, ?, ?)";
-
-        for (var i in my_data) {
-        	//for each row, insert into the table
-			item = my_data[i];
-        	var params = [item.objectId, item.item_name, item.item_price];
-        	tx.executeSql(sql, params);
-		}
+				  console.log(list);
+				  $scope.items = list;
+				  $scope.$apply();
+			});
 
 
-
-        }, function(e) {
-          console.log("ERROR: " + e.message);
-        });
 	});
 
 })
 
-.controller('PlaylistDetailCtrl', function($scope, $stateParams, MenuFeed) {
+.controller('PlaylistDetailCtrl', function($scope, $stateParams) {
+	//console.log($stateParams.id);
 
-	MenuFeed.getDataDetail($stateParams.objectId).then(function(data){
-    	$scope.items = data.data.data;
-    	console.log(data.data.data);
-  });
+	var getId = $stateParams.id;
+
+	db.transaction(function (px) {
+		px.executeSql('SELECT * FROM menu WHERE id = "'+ getId +'"', [], function(test, test2){
+			console.log(test2.rows.item(0));
+			trial = test2.rows.item(0);
+			$scope.items = trial;
+
+		});
+
+		//console.log(results.rows.item(i));
+	});
 
 
 })
