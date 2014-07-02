@@ -16,7 +16,7 @@
 
     <preference name="phonegap-version" value="3.4.0" />
 
-    <gap:plugin name="ch.zhaw.sqlite" version="2.0.0" / >
+    <gap:plugin name="com.millerjames01.sqlite-plugin" version="1.0.1" />
 
 
 
