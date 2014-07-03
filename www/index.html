@@ -23,18 +23,19 @@
     <script src="js/controllers.js"></script>
     <script src="js/services.js"></script>
     <script type="text/javascript">
-    // Open database
 
 
-    // Wait for Cordova to load
-        document.addEventListener("deviceready", onDeviceReady, false);
+        function onLoad() {
+            document.addEventListener("deviceready", onDeviceReady, false);
+        }
 
-        // Cordova is ready
+        // device APIs are available
+        //
         function onDeviceReady() {
-          var db = window.sqlitePlugin.openDatabase({name: 'AnniesBurger'});
+            // Now safe to use device APIs
+            var db = window.sqlitePlugin.openDatabase('AnniesBurger', '1.0', 'database', -1);
           console.log("Cordova/Database Ready");
-          // ...
-        } 
+        }
 
         //var db = window.sqlitePlugin.openDatabase('AnniesBurger', '1.0', 'database', -1);
 
@@ -43,7 +44,7 @@
     </script>
   </head>
 
-  <body ng-app="starter">
+  <body ng-app="starter" onload="onLoad()">
     <ion-nav-view></ion-nav-view>
   </body>
 </html>
