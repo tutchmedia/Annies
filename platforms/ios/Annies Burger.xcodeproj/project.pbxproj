@@ -41,6 +41,8 @@
 		3D7F40F269FD45919717006E /* CDVLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 473A75EE679B4736AD2DD61E /* CDVLogger.m */; };
 		8FA222E8DCD8462B90AD2DF8 /* CDVDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A96742542074CD7A216AF3D /* CDVDevice.m */; };
 		1B6B80534D7449338901BD6F /* CDVStatusBar.m in Sources */ = {isa = PBXBuildFile; fileRef = A0E1542B04914E29AF945564 /* CDVStatusBar.m */; };
+		84F5D702082D45E0A2C2CEE8 /* SQLitePlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 496928601188421486C76B19 /* SQLitePlugin.m */; };
+		D8FAFB49456A48AF96202FB7 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F7458334D7E34D11A6B2A034 /* libsqlite3.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -111,6 +113,9 @@
 		6B803E51B6EE430788E35DC9 /* CDVDevice.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVDevice.h"; path = "org.apache.cordova.device/CDVDevice.h"; sourceTree = "<group>"; fileEncoding = 4; };
 		A0E1542B04914E29AF945564 /* CDVStatusBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "CDVStatusBar.m"; path = "org.apache.cordova.statusbar/CDVStatusBar.m"; sourceTree = "<group>"; fileEncoding = 4; };
 		3BFDAEDDF75D492686D3F6F8 /* CDVStatusBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVStatusBar.h"; path = "org.apache.cordova.statusbar/CDVStatusBar.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		496928601188421486C76B19 /* SQLitePlugin.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "SQLitePlugin.m"; path = "com.phonegap.plugins.sqlite/SQLitePlugin.m"; sourceTree = "<group>"; fileEncoding = 4; };
+		D93B9EEB5DBB4DC0A5D84D41 /* SQLitePlugin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "SQLitePlugin.h"; path = "com.phonegap.plugins.sqlite/SQLitePlugin.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		F7458334D7E34D11A6B2A034 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libsqlite3.dylib"; path = "usr/lib/libsqlite3.dylib"; sourceTree = SDKROOT; fileEncoding = 4; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +128,7 @@
 				288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */,
 				305D5FD1115AB8F900A74A75 /* MobileCoreServices.framework in Frameworks */,
 				5AEE5B35173C68D80009041E /* CoreLocation.framework in Frameworks */,
+				D8FAFB49456A48AF96202FB7 /* libsqlite3.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -216,6 +222,7 @@
 				5B1594DC16A7569C00FEF299 /* AssetsLibrary.framework */,
 				288765FC0DF74451002DB57D /* CoreGraphics.framework */,
 				305D5FD0115AB8F900A74A75 /* MobileCoreServices.framework */,
+				F7458334D7E34D11A6B2A034 /* libsqlite3.dylib */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -237,6 +244,8 @@
 				6B803E51B6EE430788E35DC9 /* CDVDevice.h */,
 				A0E1542B04914E29AF945564 /* CDVStatusBar.m */,
 				3BFDAEDDF75D492686D3F6F8 /* CDVStatusBar.h */,
+				496928601188421486C76B19 /* SQLitePlugin.m */,
+				D93B9EEB5DBB4DC0A5D84D41 /* SQLitePlugin.h */,
 			);
 			name = Plugins;
 			path = "Annies Burger/Plugins";
@@ -434,6 +443,7 @@
 				3D7F40F269FD45919717006E /* CDVLogger.m in Sources */,
 				8FA222E8DCD8462B90AD2DF8 /* CDVDevice.m in Sources */,
 				1B6B80534D7449338901BD6F /* CDVStatusBar.m in Sources */,
+				84F5D702082D45E0A2C2CEE8 /* SQLitePlugin.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
