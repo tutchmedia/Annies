@@ -26,7 +26,18 @@
     <script type="text/javascript">
     // Open database
 
-        var db = window.openDatabase('AnniesBurger', '1.0', 'database', -1);
+
+    // Wait for Cordova to load
+        document.addEventListener("deviceready", onDeviceReady, false);
+
+        // Cordova is ready
+        function onDeviceReady() {
+          var db = window.sqlitePlugin.openDatabase({name: 'AnniesBurger'});
+          console.log("Cordova/Database Ready")
+          // ...
+        }
+
+        //var db = window.sqlitePlugin.openDatabase('AnniesBurger', '1.0', 'database', -1);
 
     //Create database
 
