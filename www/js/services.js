@@ -15,7 +15,6 @@ angular.module('starter.services', [])
 
       return $http.get('https://api.backendless.com/v1/data/menu', myHeader).success(function (data) {
 
-        db = window.sqlitePlugin.openDatabase('AnniesBurger', '1.0', 'database', -1);
 
       // After returning the data, insert it into the table from here ready for the controller to pull from the db directly
 
