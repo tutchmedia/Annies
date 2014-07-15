@@ -27,19 +27,16 @@
     <script src="js/services.js"></script>
     <script type="text/javascript">
 
+        document.addEventListener("deviceready", onDeviceReady, false);
 
-        function onLoad() {
-            document.addEventListener("deviceready", onDeviceReady, false);
-        }
 
-        // device APIs are available
-        //
         function onDeviceReady() {
             // Now safe to use device APIs
             var db = window.sqlitePlugin.openDatabase('AnniesBurger', '1.0', 'database', -1);
-          console.log("Cordova/Database Ready");
-        }
+            console.log("Cordova/Database Ready");
+        } 
 
+        // Preview in browser:
         db = window.openDatabase('AnniesBurger', '1.0', 'database', -1);
 
     //Create database
