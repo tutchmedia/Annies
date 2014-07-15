@@ -28,7 +28,7 @@ angular.module('starter.controllers', [])
 
 .controller('PlaylistsCtrl', function($scope, MenuFeed) {
 
-
+	db = window.sqlitePlugin.openDatabase('AnniesBurger', '1.0', 'database', -1);
 
   //$scope.items = [];
   var list = [];
