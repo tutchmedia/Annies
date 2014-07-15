@@ -1,6 +1,7 @@
 angular.module('starter.services', [])
 
 .factory('MenuFeed', function($http) {
+
   return {
     getData: function() {
       // Set header

@@ -27,7 +27,6 @@ angular.module('starter.controllers', [])
 })
 
 .controller('PlaylistsCtrl', function($scope, MenuFeed) {
-
   //$scope.items = [];
   var list = [];
 
